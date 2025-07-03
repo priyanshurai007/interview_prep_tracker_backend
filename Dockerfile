@@ -1,22 +1,26 @@
-# Use the official OpenJDK 17 image
+# Use an official Java image
 FROM openjdk:17-jdk-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy wrapper and pom.xml first for dependency caching
+# Copy the Maven wrapper and project files
 COPY .mvn .mvn
 COPY mvnw mvnw
 COPY pom.xml .
 
-# Grant permission and build dependencies + package in one layer
-RUN chmod +x mvnw && ./mvnw dependency:go-offline && ./mvnw package -DskipTests
+# Give permission to Maven wrapper
+RUN chmod +x mvnw
 
-# Copy the rest of the code
-COPY . .
+# Copy source files *before* building
+COPY src src
 
-# Expose backend port
+# Download dependencies and build the project
+RUN ./mvnw dependency:go-offline
+RUN ./mvnw package -DskipTests
+
+# Expose port
 EXPOSE 8080
 
-# Run the Spring Boot jar
+# Run the application
 CMD ["java", "-jar", "target/interviewprep-0.0.1-SNAPSHOT.jar"]
