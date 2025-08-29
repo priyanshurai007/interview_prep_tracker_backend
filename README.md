@@ -10,7 +10,6 @@ This is the **Spring Boot backend** for the Interview Prep Tracker full-stack ap
 - 📚 Topic-wise and company-wise question tracking  
 - 📊 Progress management APIs (create/update/fetch progress)  
 - 📈 Structured relational database using PostgreSQL  
-- 🧪 Spring Data JPA and DTO-layer architecture  
 - 🌍 CORS support for frontend-backend interaction  
 - 🐳 Containerized with Docker and deployed on Render  
 
@@ -36,7 +35,7 @@ This is the **Spring Boot backend** for the Interview Prep Tracker full-stack ap
 git clone https://github.com/priyanshurai007/interview_prep_tracker_backend.git
 cd interview_prep_tracker_backend
 ```
-2. Configure Environment
+### 2. Configure Environment
 Set environment variables in application.properties or use a .env file (if using Docker). Example config:
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/interview_prep
@@ -46,7 +45,7 @@ firebase.admin-sdk-path=path/to/firebase-adminsdk.json
 frontend.url=http://localhost:3000
 Replace with your own DB credentials and Firebase Admin SDK path.
 
-3. Run Locally
+### 3. Run Locally
 If using Maven:
 
 ./mvnw spring-boot:run
